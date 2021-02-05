@@ -26,5 +26,8 @@
   "bugs": {
     "url": "https://github.com/joanayala/vertebra-api/issues"
   },
-  "homepage": "https://github.com/joanayala/vertebra-api#readme"
+  "homepage": "https://github.com/joanayala/vertebra-api#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
 }
