@@ -21,6 +21,8 @@ app.get('/', (req, res) => {
 });
 app.use('/api/login', require('./src/auth/auth.router'));
 app.use('/api/users', require('./src/user/user.route'));
+app.use('/api/roles', require('./src/rol/rol.router'));
+app.use('/api/logs', require('./src/log/log.router'));
 
 // Main
 app.listen(process.env.PORT, () => {
