@@ -14,6 +14,6 @@ const router = Router();
 router.get('/', validateJWT, getLogs);
 
 //router.get('/action', getLogs2);
-router.get('/action?q=', validateJWT, getRoles);
+router.get('/action?q=', validateJWT, getLogs2);
 
 module.exports = router;
