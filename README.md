@@ -1,6 +1,6 @@
-# Backend Api Vertebra Admin
+# Backend Vertebra API
 
-Backend en Node.js y Express.js para la administracion de usuarios.
+Backend en Node.js + Express.js y PostgreSQL..
 
 ## Installation
 
@@ -10,7 +10,7 @@ Descargue el repositorio y haga uso del administrador de paquetes [npm](https://
 npm install
 ```
 
-Descargue el backup de la base de datos [aquí](https://github.com/joanayala/vertebra-api/tree/main/api-documentation/db_backup) para importar la base de datos a su motor de PostgreSQL.
+Descargue el backup de la base de datos [aquí](https://github.com/joanayala/vertebra-api/tree/main/api-documentation/db_backup) para importarla  a su motor de PostgreSQL.
 
 ## Endpoints [api/login]
 Post:
