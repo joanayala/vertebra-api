@@ -10,10 +10,10 @@ const { validateJWT } = require('../shared/middlewares/validate-jwt');
 
 const router = Router();
 
-router.get('/', getLogs);
-//router.get('/', validateJWT, getLogs);
+//router.get('/', getLogs);
+router.get('/', validateJWT, getLogs);
 
-router.get('/action', getLogs2);
-//router.get('/action?q=', validateJWT, getRoles);
+//router.get('/action', getLogs2);
+router.get('/action?q=', validateJWT, getRoles);
 
 module.exports = router;

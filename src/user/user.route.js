@@ -10,13 +10,13 @@ const { validateJWT } = require('../shared/middlewares/validate-jwt');
 
 const router = Router();
 
-router.get('/', getUsers);
-//router.get('/', validateJWT, getUsers);
+//router.get('/', getUsers);
+router.get('/', validateJWT, getUsers);
 
 router.post(
   '/',
   [
-    //validateJWT,
+    validateJWT,
     check('username', 'Username is required').not().isEmpty(),
     check('password', 'Password is required').not().isEmpty(),
     check('rol_id', 'Rol is required').not().isEmpty(),
@@ -28,7 +28,7 @@ router.post(
 router.put(
   '/:id',
   [
-    //validateJWT,
+    validateJWT,
     check('username', 'Username is required').not().isEmpty(),
     check('password', 'Password is required').not().isEmpty(),
     check('rol_id', 'Rol is required').not().isEmpty(),
@@ -38,7 +38,7 @@ router.put(
   updateUser
 );
 
-//router.delete('/:id', [validateJWT], deleteUser);
-router.delete('/:id', deleteUser);
+router.delete('/:id', [validateJWT], deleteUser);
+//router.delete('/:id', deleteUser);
 
 module.exports = router;
