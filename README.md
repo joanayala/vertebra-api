@@ -9,6 +9,7 @@ Descargue o clone el repositorio en su computadora y haga uso del administrador 
 ```bash
 npm install
 ```
+## PostgreSQL database backup
 
 Descargue el backup de la base de datos [aquí](https://github.com/joanayala/vertebra-api/tree/main/api-documentation/db_backup) para importarla  a su motor de PostgreSQL.
 
