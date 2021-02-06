@@ -4,13 +4,16 @@ Backend en Node.js + Express.js y PostgreSQL..
 
 ## Installation
 
-Descargue el repositorio y haga uso del administrador de paquetes [npm](https://www.npmjs.com/) para instalar **vertebra-api**.
+Descargue o clone el repositorio en su computadora y haga uso del administrador de paquetes [npm](https://www.npmjs.com/) para instalar **vertebra-api**.
 
 ```bash
 npm install
 ```
 
 Descargue el backup de la base de datos [aquí](https://github.com/joanayala/vertebra-api/tree/main/api-documentation/db_backup) para importarla  a su motor de PostgreSQL.
+
+## Importante [Uso de Token con JWT]
+Para poder hacer pruebas de las peticiones (diferentes al Login), se debe agregar al HEADER (en postman) el TOKEN generado en el Logueo.  Este debe agregarse con la clave (KEY) x-token, y en value, agregar la cadena generada como token en la tabla users.
 
 ## Endpoints [api/login]
 Post:
