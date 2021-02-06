@@ -18,4 +18,4 @@ Modelo relacional base de datos
 
 Arquitectura:
 
-![alt text](https://github.com/joanayala/vertebra-api/blob/main/api-documentation/arquitectura.jpg)
+![alt text](https://github.com/joanayala/vertebra-api/blob/main/api-documentation/architecture.jpg)
