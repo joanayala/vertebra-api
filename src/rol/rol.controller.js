@@ -8,9 +8,12 @@ const getRoles = async (req, res) => {
   try {
     const listRoles = await dbConnection.query('select * from roles order by id asc');
 
-    res.status(200).json({
-      status: 200,
-      roles: listRoles.rows,
+    const insertRolLog = dbConnection.query('insert into logs (user_id, action) VALUES ($1, $2) RETURNING id', [1, 'List.roles'], (error, results) => {
+      res.status(200).json({
+        status: 200,
+        id_log: results.rows[0].id,
+        roles: listRoles.rows,
+      });
     });
   } catch (error) {
     res.status(500).json({
@@ -125,7 +128,6 @@ const deleteRol = async (req, res = response) => {
       });
     }
 
-    // delete user
     dbConnection.query('delete from roles where id = $1', [rolId], (error, results) => {
       if (error) {
         return res.status(500).json({
@@ -146,7 +148,6 @@ const deleteRol = async (req, res = response) => {
     });
   }
 };
-
 
 module.exports = {
   getRoles,

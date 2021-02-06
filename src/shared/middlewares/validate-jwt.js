@@ -28,7 +28,7 @@ const validateJWT = async (req, res, next) => {
   } catch (error) {
     return res.status(500).json({
       status: 500,
-      msg: 'El token no es válido o ya expiro',
+      msg: 'El token no es válido o ya expiró',
     });
   }
 };

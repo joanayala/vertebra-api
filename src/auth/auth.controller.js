@@ -63,7 +63,7 @@ const logout = async (req, res = response) => {
     if (!idExist.rowCount > 0) {
       return res.status(500).json({
         status: 500,
-        msg: 'The user ID does not exists, please verify the information.',
+        msg: 'The user ID does not exist, please verify the information.',
       });
     }
 

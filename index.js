@@ -19,6 +19,7 @@ app.get('/', (req, res) => {
     msg: 'Welcome vertebra-api',
   });
 });
+
 app.use('/api/login', require('./src/auth/auth.router'));
 app.use('/api/users', require('./src/user/user.route'));
 app.use('/api/roles', require('./src/rol/rol.router'));
