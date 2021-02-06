@@ -38,18 +38,19 @@ const login = async (req, res = response) => {
     const token = await generateJWT(username);
     dbConnection.query('update users set access_token = $1 where id = $2', [token, usernameExist.rows[0].id]);
 
-    // dbConnection.query('insert into logs (user_id, action) VALUES ($1, $2)', [1, 'crear user']);
+    const insertLoginLog = dbConnection.query('insert into logs (user_id, action) VALUES ($1, $2) RETURNING id', [1, 'Signin.user'], (error, results) => {
 
-    return res.status(200).json({
-      status: 200,
-      msg: 'The user is logged in',
-      rol: usernameExist.rows[0].rol_id,
+      return res.status(200).json({
+        status: 200,
+        msg: 'The user is logged in',
+        rol: usernameExist.rows[0].rol_id,
+      });
     });
   } catch (error) {
     console.log(error);
     res.status(500).json({
       status: false,
-      msg: 'Error al realizar login',
+      msg: 'Error login',
     });
   }
 };
