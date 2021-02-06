@@ -9,3 +9,6 @@ Usar el administrador de paquetes [npm](https://www.npmjs.com/) para instalar **
 ```bash
 npm install
 ```
+Modelo relacional base de datos
+
+![alt text](https://github.com/joanayala/vertebra-api/blob/main/api-documentation/vertebra-api_db.png)
