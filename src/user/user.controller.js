@@ -44,8 +44,8 @@ const createUser = async (req, res = response) => {
 
     // encrypt password
     const salt = bcrypt.genSaltSync();
-    const passwordBcrypt = bcrypt.hashSync(password, salt);
-    // const passwordBcrypt = password;
+    //const passwordBcrypt = bcrypt.hashSync(password, salt);
+    const passwordBcrypt = password;
 
     // Generate TOKEN - JWT
     const token = await generateJWT(username);
@@ -106,15 +106,15 @@ const updateUser = async (req, res = response) => {
 
   // encrypt password
   const salt = bcrypt.genSaltSync();
-  const passwordBcrypt = bcrypt.hashSync(password, salt);
-  // const passwordBcrypt = password;
+  //const passwordBcrypt = bcrypt.hashSync(password, salt);
+  const passwordBcrypt = password;
 
   // update user
   dbConnection.query('update users set username = $1, password = $2, rol_id = $3, status = $4 where id = $5', [username, passwordBcrypt, rol_id, status, uid], (error, results) => {
     if (error) {
       return res.status(500).json({
         status: 500,
-        msg: 'Error updated user',
+        msg: 'Error updating user',
       });
     }
     // dbConnection.query('insert into logs (user_id, action) VALUES ($1, $2)', [1, 'crear user']);

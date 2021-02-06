@@ -19,7 +19,7 @@ const validateJWT = async (req, res, next) => {
     if (!isToken.rowCount > 0) {
       return res.status(500).json({
         status: 500,
-        msg: 'El token ya cambio, vuelva hacer login',
+        msg: 'El token ya cambio, vuelva a loguearse',
       });
     }
 

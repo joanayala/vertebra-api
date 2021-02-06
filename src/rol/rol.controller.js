@@ -59,53 +59,38 @@ const createRol = async (req, res = response) => {
 };
 
 const updateRol = async (req, res = response) => {
-
+    const rolId = req.params.id;
     const { id, name, level } = req.body;
 
-    const rolIdExist = await dbConnection.query('select * from roles where id = $1::int', [id]);
+    const rolIdExist = await dbConnection.query('select * from roles where id = $1::int', [rolId]);
     if (rolIdExist.rowCount < 1) {
         return res.status(500).json({
             status: 500,
             msg: 'The id does not exist, please verify the information.',
         });
     }
-  
-  /*if (rolIdExist.rowCount > 0) {
-    if (nameLevelExist.rows[0].name === name) {
-      return res.status(500).json({
-        status: 500,
-        msg: 'The username already exists, please verify the information.',
-      });
+
+    const rolNameExist = await dbConnection.query('select * from roles where id = $1::int', [rolId]);
+    if (rolNameExist.rowCount > 0 && req.body.name == rolNameExist.rows[0].name) {
+        return res.status(500).json({
+            status: 500,
+            msg: 'The rol name already exist, please verify the information.',
+        });
     }
-  }
 
-  const rolExist = await dbConnection.query('select * from roles where id = $1::int', [rol_id]);
-  if (!rolExist.rowCount > 0) {
-    return res.status(500).json({
-      status: 500,
-      msg: 'The rol does not exists, please verify the information.',
-    });
-  }
-
-  // encrypt password
-  const salt = bcrypt.genSaltSync();
-  const passwordBcrypt = bcrypt.hashSync(password, salt);
-  // const passwordBcrypt = password;
-
-  // update user
-  dbConnection.query('update users set username = $1, password = $2, rol_id = $3, status = $4 where id = $5', [username, passwordBcrypt, rol_id, status, uid], (error, results) => {
-    if (error) {
-      return res.status(500).json({
-        status: 500,
-        msg: 'Error updated user',
+    dbConnection.query('update roles set name = $1, level = $2 where id = $3', [name, level, rolId], (error, results) => {
+      if (error) {
+        return res.status(500).json({
+          status: 500,
+          msg: 'Error updating rol',
+        });
+      }
+      // dbConnection.query('insert into logs (user_id, action) VALUES ($1, $2)', [1, 'crear user']);
+      res.status(200).json({
+        status: 200,
+        msg: 'Rol has been updated successfully',
       });
-    }
-    // dbConnection.query('insert into logs (user_id, action) VALUES ($1, $2)', [1, 'crear user']);
-    res.status(200).json({
-      status: 200,
-      msg: 'User updated successfully',
     });
-  });*/
 };
 
 const deleteRol = async (req, res = response) => {
@@ -120,7 +105,7 @@ const deleteRol = async (req, res = response) => {
       });
     }
 
-    const idRolBusy = await dbConnection.query('select * from users u inner join roles r on r.id = u.rol_id');
+    const idRolBusy = await dbConnection.query('select * from users u inner join roles r on r.id = u.rol_id where r.id = $1::int', [rolId]);
     if (idRolBusy.rowCount > 0) {
       return res.status(500).json({
         status: 500,
@@ -128,7 +113,7 @@ const deleteRol = async (req, res = response) => {
       });
     }
 
-    dbConnection.query('delete from roles where id = $1', [rolId], (error, results) => {
+    dbConnection.query('delete from roles where id = $1::int', [rolId], (error, results) => {
       if (error) {
         return res.status(500).json({
           status: 500,
@@ -144,7 +129,7 @@ const deleteRol = async (req, res = response) => {
   } catch (error) {
     res.status(500).json({
       status: 500,
-      msg: 'Error deleting user',
+      msg: 'Error deleting rol',
     });
   }
 };

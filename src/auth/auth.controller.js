@@ -18,8 +18,9 @@ const login = async (req, res = response) => {
     }
 
     // Check password
-    const validPassword = bcrypt.compareSync(password, usernameExist.rows[0].password);
-    if (!validPassword) {
+    //const validPassword = bcrypt.compareSync(password, usernameExist.rows[0].password);
+    //if (!validPassword) {
+      if(password != usernameExist.rows[0].password){
       return res.status(500).json({
         status: 500,
         msg: 'The password is invalid, please verify the information.',
